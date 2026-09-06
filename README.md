@@ -11,6 +11,13 @@ Cada módulo se genera con su propio `ServiceProvider`, se registra automáticam
 en `bootstrap/providers.php` (mecanismo de Laravel 11/12) y queda cargable mediante
 el namespace PSR-4 `Modules\`.
 
+> **¿Por qué "Kata"?** El nombre proviene del japonés *kata* (型 / 形), el
+> conjunto de movimientos predefinidos que se practican en disciplinas como el
+> karate: patrones que, repetidos y perfeccionados, se convierten en la base para
+> construir algo mayor. Igual que un kata, la librería parte de *scaffolds*
+> prefijados y estructurados para generar código consistente y repetible sobre el
+> que luego se construye cada aplicación.
+
 ---
 
 ## Requisitos
