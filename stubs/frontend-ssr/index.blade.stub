@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ module }}</title>
+    @vite([
+        'modules/{{ module }}/Resources/Assets/app.ts',
+        'modules/{{ module }}/Resources/Assets/app.css',
+    ], 'build/modules/{{ nameKebab }}')
+</head>
+<body>
+    <h1>Módulo {{ module }}</h1>
+</body>
+</html>

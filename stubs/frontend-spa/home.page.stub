@@ -1,0 +1,12 @@
+import { Head } from '@inertiajs/react';
+
+export default function HomePage() {
+    return (
+        <>
+            <Head title="Inicio" />
+            <main className="flex min-h-screen items-center justify-center">
+                <h1 className="text-3xl font-bold">Módulo {{ module }}</h1>
+            </main>
+        </>
+    );
+}

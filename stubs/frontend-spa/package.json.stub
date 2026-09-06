@@ -1,0 +1,28 @@
+{
+    "name": "@modules/{{ nameKebab }}",
+    "private": true,
+    "type": "module",
+    "packageManager": "pnpm@9.12.0",
+    "engines": {
+        "pnpm": ">=9"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "@inertiajs/react": "^3.7.0",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.3.3",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.5",
+        "@vitejs/plugin-react": "^6.1.1",
+        "laravel-vite-plugin": "^3.2.0",
+        "tailwindcss": "^4.3.3",
+        "typescript": "^7.0.2",
+        "vite": "^8.2.2"
+    }
+}

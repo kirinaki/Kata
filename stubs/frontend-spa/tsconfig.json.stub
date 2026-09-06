@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["vite/client"],
+        "baseUrl": ".",
+        "paths": {
+            "@app/*": ["Resources/App/*"],
+            "@pages/*": ["Resources/Pages/*"],
+            "@widgets/*": ["Resources/Widgets/*"],
+            "@features/*": ["Resources/Features/*"],
+            "@shared/*": ["Resources/Shared/*"]
+        }
+    },
+    "include": ["Resources/**/*.ts", "Resources/**/*.tsx"]
+}

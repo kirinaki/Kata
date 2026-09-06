@@ -1,0 +1,4 @@
+import './app.css';
+
+// Entry point del módulo {{ module }}
+console.log('[{{ nameLower }}] app cargada');

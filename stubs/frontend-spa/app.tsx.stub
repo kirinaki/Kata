@@ -1,0 +1,29 @@
+import './main.css';
+
+import { createInertiaApp } from '@inertiajs/react';
+import { createRoot } from 'react-dom/client';
+import type { ComponentType } from 'react';
+
+// Convención FSD: cada página es una carpeta dentro de Pages/ que contiene
+// un archivo "Page.tsx". El nombre de la página usado en Inertia::render()
+// corresponde a la ruta de la carpeta, p.ej. Pages/Home/Page.tsx => "Home".
+const pages = import.meta.glob<{ default: ComponentType }>(
+    '../Pages/**/Page.tsx',
+);
+
+createInertiaApp({
+    title: (title) => (title ? `${title} · {{ module }}` : '{{ module }}'),
+    resolve: (name) => {
+        const path = `../Pages/${name}/Page.tsx`;
+        const page = pages[path];
+
+        if (!page) {
+            throw new Error(`[{{ nameLower }}] Página no encontrada: ${name} (${path})`);
+        }
+
+        return page();
+    },
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />);
+    },
+});

@@ -1,0 +1,32 @@
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+
+// El vite.config.ts vive dentro del módulo (modules/{{ module }}), por eso
+// se apunta la raíz dos niveles arriba, a la raíz del proyecto Laravel.
+const buildDirectory = 'build/modules/{{ nameKebab }}';
+
+export default defineConfig({
+    // Raíz del proyecto Laravel (dos niveles arriba del módulo).
+    root: '../../',
+    plugins: [
+        laravel({
+            input: [
+                'modules/{{ module }}/Resources/App/app.tsx',
+                'modules/{{ module }}/Resources/App/main.css',
+            ],
+            // Carpeta aislada del módulo dentro de public/.
+            buildDirectory,
+            refresh: true,
+        }),
+        react(),
+        tailwindcss(),
+    ],
+    build: {
+        // Escribe en la carpeta pública de Laravel, aislada por módulo:
+        // public/build/modules/{{ nameKebab }}
+        outDir: `public/${buildDirectory}`,
+        emptyOutDir: true,
+    },
+});

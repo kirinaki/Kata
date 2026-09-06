@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ module }}</title>
+    @vite([
+        'modules/{{ module }}/Resources/App/app.tsx',
+        'modules/{{ module }}/Resources/App/main.css',
+    ], 'build/modules/{{ nameKebab }}')
+    @inertiaHead
+</head>
+<body>
+    @inertia
+</body>
+</html>
