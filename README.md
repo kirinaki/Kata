@@ -1,5 +1,7 @@
 # Kata CLI
 
+[![Tests](https://github.com/kirinaki/Kata/actions/workflows/tests.yml/badge.svg)](https://github.com/kirinaki/Kata/actions/workflows/tests.yml)
+
 Generador de módulos para Laravel 12. **Kata** provee comandos Artisan para crear
 módulos autocontenidos dentro de una carpeta `modules/`, a partir de *scaffolds*
 predefinidos (backend simple, con migraciones, frontend SSR con Blade, o SPA con
