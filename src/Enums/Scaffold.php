@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Enums;
+namespace Kata\Enums;
 
 enum Scaffold: string
 {

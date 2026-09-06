@@ -1,10 +1,10 @@
 <?php
 
-namespace Kata\Kata\Modules;
+namespace Kata\Modules;
 
 use Inertia\Inertia;
-use Kata\Kata\Composer\ComposerRunner;
-use Kata\Kata\Support\Reporter;
+use Kata\Composer\ComposerRunner;
+use Kata\Support\Reporter;
 
 /**
  * Garantiza que la dependencia inertiajs/inertia-laravel esté disponible.

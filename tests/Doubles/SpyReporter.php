@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Doubles;
+namespace Kata\Tests\Doubles;
 
-use Kata\Kata\Support\Reporter;
+use Kata\Support\Reporter;
 
 /**
  * Reporter que captura los mensajes en memoria para poder inspeccionarlos.

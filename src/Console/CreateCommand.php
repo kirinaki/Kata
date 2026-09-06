@@ -1,12 +1,12 @@
 <?php
 
-namespace Kata\Kata\Console;
+namespace Kata\Console;
 
 use Illuminate\Console\Command;
-use Kata\Kata\Enums\Scaffold;
-use Kata\Kata\Modules\ModuleGenerator;
-use Kata\Kata\Modules\ModuleName;
-use Kata\Kata\Support\ConsoleReporter;
+use Kata\Enums\Scaffold;
+use Kata\Modules\ModuleGenerator;
+use Kata\Modules\ModuleName;
+use Kata\Support\ConsoleReporter;
 
 class CreateCommand extends Command
 {

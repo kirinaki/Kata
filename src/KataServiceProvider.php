@@ -1,21 +1,21 @@
 <?php
 
-namespace Kata\Kata;
+namespace Kata;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Kata\Kata\Composer\ComposerRunner;
-use Kata\Kata\Composer\ProcessComposerRunner;
-use Kata\Kata\Console\CreateCommand;
-use Kata\Kata\Console\HelloCommand;
-use Kata\Kata\Console\InstallCommand;
-use Kata\Kata\Console\RemoveCommand;
-use Kata\Kata\Modules\InertiaInstaller;
-use Kata\Kata\Modules\ModuleGenerator;
-use Kata\Kata\Modules\ModuleRemover;
-use Kata\Kata\Modules\ProviderRegistrar;
-use Kata\Kata\Modules\ProviderRegistry;
-use Kata\Kata\Modules\StubRenderer;
+use Kata\Composer\ComposerRunner;
+use Kata\Composer\ProcessComposerRunner;
+use Kata\Console\CreateCommand;
+use Kata\Console\HelloCommand;
+use Kata\Console\InstallCommand;
+use Kata\Console\RemoveCommand;
+use Kata\Modules\InertiaInstaller;
+use Kata\Modules\ModuleGenerator;
+use Kata\Modules\ModuleRemover;
+use Kata\Modules\ProviderRegistrar;
+use Kata\Modules\ProviderRegistry;
+use Kata\Modules\StubRenderer;
 
 class KataServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Composer;
+namespace Kata\Composer;
 
 /**
  * Abstracción para ejecutar operaciones de Composer.

@@ -1,11 +1,11 @@
 <?php
 
-namespace Kata\Kata\Console;
+namespace Kata\Console;
 
 use Illuminate\Console\Command;
-use Kata\Kata\Modules\ModuleName;
-use Kata\Kata\Modules\ModuleRemover;
-use Kata\Kata\Support\ConsoleReporter;
+use Kata\Modules\ModuleName;
+use Kata\Modules\ModuleRemover;
+use Kata\Support\ConsoleReporter;
 
 class RemoveCommand extends Command
 {

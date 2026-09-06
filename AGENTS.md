@@ -4,7 +4,7 @@ Guidelines for AI agents and contributors working in this repository.
 
 ## Project overview
 
-Kata is a Laravel 12 package (composer package `kata/cli`) that generates
+Kata is a Laravel 12 package (composer package `kirinaki/kata`) that generates
 self-contained modules under a host app's `modules/` directory from predefined
 scaffolds: `basic`, `core`, `frontend-ssr`, and `frontend-spa`.
 
@@ -83,6 +83,6 @@ Follow SOLID principles:
 
 ## Conventions
 
-- Follow the existing PSR-4 layout: `Kata\Kata\ => src/`,
-  `Kata\Kata\Tests\ => tests/`.
+- Follow the existing PSR-4 layout: `Kata\ => src/`,
+  `Kata\Tests\ => tests/`.
 - Do not add code comments unless they add value (explain *why*, not *what*).

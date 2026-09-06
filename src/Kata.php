@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata;
+namespace Kata;
 
 class Kata
 {

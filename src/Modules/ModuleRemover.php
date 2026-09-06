@@ -1,9 +1,9 @@
 <?php
 
-namespace Kata\Kata\Modules;
+namespace Kata\Modules;
 
 use Illuminate\Filesystem\Filesystem;
-use Kata\Kata\Support\Reporter;
+use Kata\Support\Reporter;
 
 /**
  * Elimina un módulo y lo desregistra del bootstrap de providers.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Facades;
+namespace Kata\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string greet(?string $name = null)
  * @method static string version()
  *
- * @see \Kata\Kata\Kata
+ * @see \Kata\Kata
  */
 class Kata extends Facade
 {

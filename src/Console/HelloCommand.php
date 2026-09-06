@@ -1,9 +1,9 @@
 <?php
 
-namespace Kata\Kata\Console;
+namespace Kata\Console;
 
 use Illuminate\Console\Command;
-use Kata\Kata\Facades\Kata;
+use Kata\Facades\Kata;
 
 class HelloCommand extends Command
 {

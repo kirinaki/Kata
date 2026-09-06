@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Modules;
+namespace Kata\Modules;
 
 /**
  * Contrato para registrar/desregistrar service providers.

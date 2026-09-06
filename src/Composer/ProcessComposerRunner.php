@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Composer;
+namespace Kata\Composer;
 
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;

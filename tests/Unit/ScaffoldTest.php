@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Unit;
+namespace Kata\Tests\Unit;
 
-use Kata\Kata\Enums\Scaffold;
+use Kata\Enums\Scaffold;
 use PHPUnit\Framework\TestCase;
 
 class ScaffoldTest extends TestCase

@@ -1,5 +1,5 @@
 {
-    "name": "kata/cli",
+    "name": "kirinaki/kata",
     "description": "Plugin base para Laravel (Kata).",
     "type": "library",
     "license": "MIT",
@@ -13,21 +13,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Kata\\Kata\\": "src/"
+            "Kata\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Kata\\Kata\\Tests\\": "tests/"
+            "Kata\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Kata\\Kata\\KataServiceProvider"
+                "Kata\\KataServiceProvider"
             ],
             "aliases": {
-                "Kata": "Kata\\Kata\\Facades\\Kata"
+                "Kata": "Kata\\Facades\\Kata"
             }
         }
     },

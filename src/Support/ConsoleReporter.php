@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Support;
+namespace Kata\Support;
 
 use Illuminate\Console\Command;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Feature;
+namespace Kata\Tests\Feature;
 
-use Kata\Kata\KataServiceProvider;
+use Kata\KataServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 /**

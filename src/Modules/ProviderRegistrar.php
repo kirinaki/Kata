@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Modules;
+namespace Kata\Modules;
 
 use Illuminate\Support\ServiceProvider;
 

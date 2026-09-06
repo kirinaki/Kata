@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Unit;
+namespace Kata\Tests\Unit;
 
-use Kata\Kata\Modules\ModuleName;
+use Kata\Modules\ModuleName;
 use PHPUnit\Framework\TestCase;
 
 class ModuleNameTest extends TestCase

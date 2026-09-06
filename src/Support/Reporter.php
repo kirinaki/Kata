@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Support;
+namespace Kata\Support;
 
 /**
  * Abstracción de salida para desacoplar los servicios de la consola.

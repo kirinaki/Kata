@@ -1,16 +1,16 @@
 <?php
 
-namespace Kata\Kata\Tests\Unit;
+namespace Kata\Tests\Unit;
 
 use Illuminate\Filesystem\Filesystem;
-use Kata\Kata\Enums\Scaffold;
-use Kata\Kata\Modules\InertiaInstaller;
-use Kata\Kata\Modules\ModuleGenerator;
-use Kata\Kata\Modules\ModuleName;
-use Kata\Kata\Modules\StubRenderer;
-use Kata\Kata\Tests\Doubles\FakeComposerRunner;
-use Kata\Kata\Tests\Doubles\FakeProviderRegistry;
-use Kata\Kata\Tests\Doubles\SpyReporter;
+use Kata\Enums\Scaffold;
+use Kata\Modules\InertiaInstaller;
+use Kata\Modules\ModuleGenerator;
+use Kata\Modules\ModuleName;
+use Kata\Modules\StubRenderer;
+use Kata\Tests\Doubles\FakeComposerRunner;
+use Kata\Tests\Doubles\FakeProviderRegistry;
+use Kata\Tests\Doubles\SpyReporter;
 use PHPUnit\Framework\TestCase;
 
 class ModuleGeneratorTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Doubles;
+namespace Kata\Tests\Doubles;
 
-use Kata\Kata\Modules\ProviderRegistry;
+use Kata\Modules\ProviderRegistry;
 
 /**
  * Doble de prueba de ProviderRegistry: mantiene el registro en memoria

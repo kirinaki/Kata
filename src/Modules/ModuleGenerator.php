@@ -1,10 +1,10 @@
 <?php
 
-namespace Kata\Kata\Modules;
+namespace Kata\Modules;
 
 use Illuminate\Filesystem\Filesystem;
-use Kata\Kata\Enums\Scaffold;
-use Kata\Kata\Support\Reporter;
+use Kata\Enums\Scaffold;
+use Kata\Support\Reporter;
 
 /**
  * Orquesta la generación de un módulo a partir de un scaffold.

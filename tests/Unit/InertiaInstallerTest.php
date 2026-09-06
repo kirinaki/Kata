@@ -1,10 +1,10 @@
 <?php
 
-namespace Kata\Kata\Tests\Unit;
+namespace Kata\Tests\Unit;
 
-use Kata\Kata\Modules\InertiaInstaller;
-use Kata\Kata\Tests\Doubles\FakeComposerRunner;
-use Kata\Kata\Tests\Doubles\SpyReporter;
+use Kata\Modules\InertiaInstaller;
+use Kata\Tests\Doubles\FakeComposerRunner;
+use Kata\Tests\Doubles\SpyReporter;
 use PHPUnit\Framework\TestCase;
 
 class InertiaInstallerTest extends TestCase

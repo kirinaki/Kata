@@ -1,8 +1,8 @@
 <?php
 
-namespace Kata\Kata\Tests\Doubles;
+namespace Kata\Tests\Doubles;
 
-use Kata\Kata\Composer\ComposerRunner;
+use Kata\Composer\ComposerRunner;
 
 /**
  * Doble de prueba de ComposerRunner: no ejecuta Composer real, solo

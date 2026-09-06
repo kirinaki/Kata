@@ -32,7 +32,7 @@ En el `composer.json` del proyecto, señala el repositorio y añade la dependenc
 ```json
 {
     "require": {
-        "kata/cli": "@dev"
+        "kirinaki/kata": "@dev"
     },
     "repositories": [
         {
@@ -44,7 +44,7 @@ En el `composer.json` del proyecto, señala el repositorio y añade la dependenc
 ```
 
 ```bash
-composer require "kata/cli:@dev"
+composer require "kirinaki/kata:@dev"
 ```
 
 El `KataServiceProvider` se descubre automáticamente (package discovery).

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata\Kata\Console;
+namespace Kata\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
