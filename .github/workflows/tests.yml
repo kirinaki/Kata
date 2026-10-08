@@ -15,6 +15,12 @@ jobs:
       fail-fast: true
       matrix:
         php: ['8.2', '8.3', '8.4', '8.5']
+        laravel: ['12', '13']
+        exclude:
+          - php: '8.2'
+            laravel: '13'
+
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}
 
     steps:
       - uses: actions/checkout@v7
@@ -29,12 +35,17 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.cache/composer
-          key: composer-${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('composer.json') }}
+          key: composer-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-${{ hashFiles('composer.json') }}
           restore-keys: |
-            composer-${{ runner.os }}-php-${{ matrix.php }}-
+            composer-${{ runner.os }}-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-
 
       - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --no-progress
+        run: >
+          composer update
+          --with "illuminate/support:^${{ matrix.laravel }}.0"
+          --no-interaction
+          --prefer-dist
+          --no-progress
 
       - name: Run tests
         run: vendor/bin/phpunit

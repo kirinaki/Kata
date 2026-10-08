@@ -2,13 +2,13 @@
 
 [![Tests](https://github.com/kirinaki/Kata/actions/workflows/tests.yml/badge.svg)](https://github.com/kirinaki/Kata/actions/workflows/tests.yml)
 
-Generador de módulos para Laravel 12. **Kata** provee comandos Artisan para crear
+Generador de módulos para Laravel 12 y 13. **Kata** provee comandos Artisan para crear
 módulos autocontenidos dentro de una carpeta `modules/`, a partir de *scaffolds*
 predefinidos (backend simple, con migraciones, frontend SSR con Blade, o SPA con
 Inertia + React).
 
 Cada módulo se genera con su propio `ServiceProvider`, se registra automáticamente
-en `bootstrap/providers.php` (mecanismo de Laravel 11/12) y queda cargable mediante
+en `bootstrap/providers.php` (mecanismo de Laravel 11 en adelante) y queda cargable mediante
 el namespace PSR-4 `Modules\`.
 
 > **¿Por qué "Kata"?** El nombre proviene del japonés *kata* (型 / 形), el
@@ -22,8 +22,8 @@ el namespace PSR-4 `Modules\`.
 
 ## Requisitos
 
-- PHP `^8.2`
-- Laravel `^12.0`
+- PHP `^8.2` (`^8.3` si usas Laravel 13)
+- Laravel `^12.0 || ^13.0`
 - [pnpm](https://pnpm.io/) `>=9` (para los scaffolds de frontend)
 - Para el scaffold `frontend-spa`: `inertiajs/inertia-laravel` (Kata intenta
   instalarlo automáticamente si falta).
