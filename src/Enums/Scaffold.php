@@ -8,6 +8,7 @@ enum Scaffold: string
     case Core = 'core';
     case FrontendSsr = 'frontend-ssr';
     case FrontendSpa = 'frontend-spa';
+    case FrontendSsrIslandsReact = 'frontend-ssr-islands-react';
 
     /**
      * Stub del ServiceProvider del scaffold.
@@ -19,6 +20,7 @@ enum Scaffold: string
             self::Core => 'core/service-provider.stub',
             self::FrontendSsr => 'frontend-ssr/service-provider.stub',
             self::FrontendSpa => 'frontend-spa/service-provider.stub',
+            self::FrontendSsrIslandsReact => 'frontend-ssr-islands-react/service-provider.stub',
         };
     }
 
@@ -38,6 +40,7 @@ enum Scaffold: string
                 'Resources/Features',
                 'Resources/Shared',
             ],
+            self::FrontendSsrIslandsReact => [],
         };
     }
 
@@ -68,6 +71,18 @@ enum Scaffold: string
                 'frontend-spa/app.tsx.stub' => 'Resources/App/app.tsx',
                 'frontend-spa/main.css.stub' => 'Resources/App/main.css',
                 'frontend-spa/home.page.stub' => 'Resources/Pages/Home/Page.tsx',
+            ],
+            self::FrontendSsrIslandsReact => [
+                'frontend-ssr-islands-react/web.stub' => 'Routes/web.php',
+                'frontend-ssr-islands-react/island.php.stub' => 'View/Components/Island.php',
+                'frontend-ssr-islands-react/island.blade.stub' => 'Resources/Views/components/island.blade.php',
+                'frontend-ssr-islands-react/index.blade.stub' => 'Resources/Views/index.blade.php',
+                'frontend-ssr-islands-react/counter.tsx.stub' => 'Resources/Islands/Counter.tsx',
+                'frontend-ssr-islands-react/app.tsx.stub' => 'Resources/Assets/app.tsx',
+                'frontend-ssr-islands-react/app.css.stub' => 'Resources/Assets/app.css',
+                'frontend-ssr-islands-react/vite.config.ts.stub' => 'vite.config.ts',
+                'frontend-ssr-islands-react/tsconfig.json.stub' => 'tsconfig.json',
+                'frontend-ssr-islands-react/package.json.stub' => 'package.json',
             ],
         };
     }

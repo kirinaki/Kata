@@ -1,0 +1,30 @@
+<?php
+
+namespace Modules\{{ module }}\View\Components;
+
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+
+/**
+ * Componente "isla": puente entre Blade y React.
+ *
+ * Recibe el nombre del componente React a montar y sus props serializadas
+ * en JSON. Si el slot está presente se hidrata sobre el HTML server-rendered
+ * (hydrateRoot); si no, se monta desde cero en el cliente (createRoot).
+ */
+class Island extends Component
+{
+    /**
+     * @param  array<string, mixed>  $props
+     */
+    public function __construct(
+        public string $component,
+        public array $props = [],
+    ) {
+    }
+
+    public function render(): View
+    {
+        return view('{{ nameLower }}::components.island');
+    }
+}

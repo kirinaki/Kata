@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Rutas web del módulo {{ module }}
+|--------------------------------------------------------------------------
+|
+| Estas rutas se cargan mediante loadRoutesFrom() en el ServiceProvider
+| del módulo y usan el grupo de middleware "web".
+|
+*/
+
+Route::middleware('web')->group(function () {
+    Route::get('/{{ nameKebab }}', function () {
+        return view('{{ nameLower }}::index');
+    })->name('{{ nameLower }}.index');
+});

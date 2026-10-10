@@ -106,6 +106,42 @@ class ModuleGeneratorTest extends TestCase
         $this->assertStringContainsString('Dashboard', $appTsx);
     }
 
+    public function test_scaffold_islands_genera_puente_isla_sin_placeholders(): void
+    {
+        $name = ModuleName::fromInput('Blog');
+
+        $this->generator()->generate($name, Scaffold::FrontendSsrIslandsReact, new SpyReporter());
+
+        $base = "{$this->basePath}/modules/Blog";
+
+        // Estructura de islas.
+        $this->assertFileExists("{$base}/View/Components/Island.php");
+        $this->assertFileExists("{$base}/Resources/Views/components/island.blade.php");
+        $this->assertFileExists("{$base}/Resources/Views/index.blade.php");
+        $this->assertFileExists("{$base}/Resources/Islands/Counter.tsx");
+        $this->assertFileExists("{$base}/Resources/Assets/app.tsx");
+
+        // La clase de la isla apunta a la vista del módulo (namespace aplicado).
+        $island = $this->files->get("{$base}/View/Components/Island.php");
+        $this->assertStringContainsString("view('blog::components.island')", $island);
+        $this->assertStringNotContainsString('{{ nameLower }}', $island);
+
+        // El provider registra el alias global y el namespaced del módulo.
+        $provider = $this->files->get("{$base}/Providers/BlogServiceProvider.php");
+        $this->assertStringContainsString("Blade::component('island', Island::class)", $provider);
+        $this->assertStringContainsString("Blade::component('blog::island', Island::class)", $provider);
+
+        // El entry y la página no quedan con placeholders sin reemplazar.
+        $appTsx = $this->files->get("{$base}/Resources/Assets/app.tsx");
+        $this->assertStringNotContainsString('{{ nameLower }}', $appTsx);
+        $this->assertStringContainsString('Isla no encontrada', $appTsx);
+
+        $index = $this->files->get("{$base}/Resources/Views/index.blade.php");
+        $this->assertStringNotContainsString('{{ module }}', $index);
+        $this->assertStringNotContainsString('{{ nameKebab }}', $index);
+        $this->assertStringContainsString('Módulo Blog', $index);
+    }
+
     public function test_exists_detecta_modulo_creado(): void
     {
         $name = ModuleName::fromInput('Blog');

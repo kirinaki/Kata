@@ -4,8 +4,8 @@
 
 Generador de módulos para Laravel 12 y 13. **Kata** provee comandos Artisan para crear
 módulos autocontenidos dentro de una carpeta `modules/`, a partir de *scaffolds*
-predefinidos (backend simple, con migraciones, frontend SSR con Blade, o SPA con
-Inertia + React).
+predefinidos (backend simple, con migraciones, frontend SSR con Blade, islas de
+React estilo Astro, o SPA con Inertia + React).
 
 Cada módulo se genera con su propio `ServiceProvider`, se registra automáticamente
 en `bootstrap/providers.php` (mecanismo de Laravel 11 en adelante) y queda cargable mediante
@@ -95,6 +95,7 @@ composer dump-autoload
 php artisan kata:create Blog basic
 php artisan kata:create Catalog core
 php artisan kata:create Shop frontend-ssr
+php artisan kata:create Blog frontend-ssr-islands-react
 php artisan kata:create Dashboard frontend-spa
 ```
 
@@ -147,6 +148,55 @@ modules/{Nombre}/
 ├── vite.config.ts                          # salida aislada en public/build/modules/{kebab}
 └── package.json                            # motor pnpm
 ```
+
+### `frontend-ssr-islands-react`
+SSR con Blade + **islas de interactividad en React** (estilo [Astro](https://astro.build/)):
+la página se renderiza en el servidor y los bloques interactivos son componentes React
+que se montan de forma aislada en el cliente. Sin Inertia ni SPA completo.
+
+```
+modules/{Nombre}/
+├── Providers/{Nombre}ServiceProvider.php   # loadRoutesFrom + loadViewsFrom + Blade::component
+├── Routes/web.php
+├── View/Components/Island.php              # componente <x-island> (puente Blade → React)
+├── Resources/
+│   ├── Views/
+│   │   ├── index.blade.php                 # página SSR + <x-island>
+│   │   └── components/island.blade.php     # vista del componente
+│   ├── Islands/Counter.tsx                 # islas: un archivo por componente
+│   └── Assets/{app.tsx, app.css}            # entry: escanea y monta/hidrata islas
+├── vite.config.ts                          # react + tailwind, salida en public/build/modules/{kebab}
+├── tsconfig.json                           # alias @assets, @islands
+└── package.json                            # motor pnpm, React 19
+```
+
+El puente entre Blade y React es el componente **`<x-island>`**, registrado con dos
+alias: el global `x-island` y el namespaced `x-{nombre}::island` (uso inequívoco
+cuando hay varios módulos de islas).
+
+```blade
+{{-- Monta en el cliente con createRoot (sin HTML previo). --}}
+<x-island component="Counter" :props="['initial' => 5]" />
+
+{{-- Hidrata el HTML del slot con hydrateRoot (contenido visible sin JS). --}}
+<x-island component="Counter" :props="['initial' => 10]">
+    <p>Cargando contador…</p>
+</x-island>
+```
+
+- `component` (obligatorio) se resuelve a un archivo dentro de `Resources/Islands/`:
+  `Counter` → `Counter.tsx`, `Dashboard/Chart` → `Dashboard/Chart.tsx` (soporte anidado).
+- `props` (opcional) se serializa a JSON seguro para HTML y se pasa tal cual al
+  componente. Debe ser serializable a JSON.
+- Sin contenido el entry monta la isla con `createRoot`; con slot la hidrata con
+  `hydrateRoot` sobre el HTML ya renderizado. Para hidratar sin *warnings*, el slot
+  debe contener HTML compatible con la salida de React (si no coincide, React
+  re-renderiza en el cliente); en casos simples es preferible no usar slot.
+- Si un componente no existe, se registra el error en consola sin afectar al resto
+  de islas.
+
+El entry `Resources/Assets/app.tsx` escanea los `[data-island]` del DOM y resuelve
+las islas con `import.meta.glob('../Islands/**/*.tsx')`.
 
 ### `frontend-spa`
 SPA con **Inertia + React + TypeScript + Tailwind v4**, siguiendo una estructura

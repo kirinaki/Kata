@@ -2,7 +2,9 @@
 
 namespace Kata\Tests\Feature;
 
+use Illuminate\View\Compilers\BladeCompiler;
 use Kata\KataServiceProvider;
+use Kata\Modules\ModuleName;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -57,6 +59,79 @@ class ModuleCommandsTest extends TestCase
         $this->assertDirectoryExists($this->modulePath($name) . '/Database/Migrations');
 
         $this->cleanup($name);
+    }
+
+    public function test_kata_create_islands_genera_y_registra_el_modulo(): void
+    {
+        $name = 'ItIslands' . random_int(1000, 9999);
+
+        $this->artisan("kata:create {$name} frontend-ssr-islands-react")
+            ->assertExitCode(0);
+
+        $this->assertFileExists($this->modulePath($name) . "/Providers/{$name}ServiceProvider.php");
+        $this->assertFileExists($this->modulePath($name) . '/View/Components/Island.php');
+        $this->assertFileExists($this->modulePath($name) . '/Resources/Views/components/island.blade.php');
+        $this->assertFileExists($this->modulePath($name) . '/Resources/Islands/Counter.tsx');
+        $this->assertFileExists($this->modulePath($name) . '/Resources/Assets/app.tsx');
+
+        $providers = require base_path('bootstrap/providers.php');
+        $this->assertContains("Modules\\{$name}\\Providers\\{$name}ServiceProvider", $providers);
+
+        $this->cleanup($name);
+
+        $this->assertDirectoryDoesNotExist($this->modulePath($name));
+    }
+
+    public function test_island_renderiza_modo_mount_hydrate_y_alias_namespaced(): void
+    {
+        $name = 'ItIsland' . random_int(1000, 9999);
+        $lower = ModuleName::fromInput($name)->lower();
+
+        $this->artisan("kata:create {$name} frontend-ssr-islands-react")
+            ->assertExitCode(0);
+
+        // Las clases del módulo no están autoloaded en el esqueleto de Testbench:
+        // se cargan a mano y el provider se registra en la app ya booteada
+        // (su boot() corre al instante).
+        require base_path("modules/{$name}/View/Components/Island.php");
+        require base_path("modules/{$name}/Providers/{$name}ServiceProvider.php");
+
+        $this->app->register("Modules\\{$name}\\Providers\\{$name}ServiceProvider");
+
+        try {
+            $mount = BladeCompiler::render(
+                "<!-- {$name} mount -->\n<x-island component=\"Counter\" :props=\"['initial' => 5]\" />",
+                [],
+                true,
+            );
+
+            $this->assertStringContainsString('data-island="Counter"', $mount);
+            $this->assertStringContainsString("data-props='{\"initial\":5}'", $mount);
+            $this->assertStringContainsString('data-mode="mount"', $mount);
+
+            $hydrate = BladeCompiler::render(
+                "<!-- {$name} hydrate -->\n<x-island component=\"Counter\" :props=\"['initial' => 10]\">cargando…</x-island>",
+                [],
+                true,
+            );
+
+            $this->assertStringContainsString('data-mode="hydrate"', $hydrate);
+            $this->assertMatchesRegularExpression(
+                '/<div[^>]*data-mode="hydrate"[^>]*>\s*cargando…\s*<\/div>/',
+                $hydrate,
+            );
+
+            $namespaced = BladeCompiler::render(
+                "<!-- {$name} ns -->\n<x-{$lower}::island component=\"Counter\" :props=\"['initial' => 15]\" />",
+                [],
+                true,
+            );
+
+            $this->assertStringContainsString('data-island="Counter"', $namespaced);
+            $this->assertStringContainsString('data-mode="mount"', $namespaced);
+        } finally {
+            $this->cleanup($name);
+        }
     }
 
     public function test_kata_create_scaffold_invalido_falla(): void

@@ -1,0 +1,30 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use Modules\{{ module }}\View\Components\Island;
+
+class {{ class }} extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views', '{{ nameLower }}');
+
+        Blade::component('island', Island::class);
+        Blade::component('{{ nameLower }}::island', Island::class);
+    }
+}

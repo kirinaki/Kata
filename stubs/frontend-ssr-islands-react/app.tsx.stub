@@ -1,0 +1,44 @@
+import './app.css';
+
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import type { ComponentType } from 'react';
+
+// Cada "isla" es un componente React dentro de Resources/Islands/.
+// El prop `component` del <x-island> corresponde al archivo:
+//   component="Counter"   => Resources/Islands/Counter.tsx
+//   component="Foo/Bar"   => Resources/Islands/Foo/Bar.tsx
+const islands = import.meta.glob<{ default: ComponentType }>('../Islands/**/*.tsx');
+
+document.querySelectorAll<HTMLElement>('[data-island]').forEach((element) => {
+    const name = element.dataset.island;
+
+    if (!name) {
+        return;
+    }
+
+    const loader = islands[`../Islands/${name}.tsx`];
+
+    if (!loader) {
+        console.error(`[{{ nameLower }}] Isla no encontrada: ${name}`);
+        return;
+    }
+
+    let props: Record<string, unknown> = {};
+    try {
+        props = JSON.parse(element.dataset.props ?? '{}');
+    } catch (error) {
+        console.error(`[{{ nameLower }}] Props inválidas para la isla: ${name}`, error);
+    }
+
+    const hydrate = element.dataset.mode === 'hydrate';
+
+    loader().then(({ default: Component }) => {
+        const island = <Component {...props} />;
+
+        if (hydrate) {
+            hydrateRoot(element, island);
+        } else {
+            createRoot(element).render(island);
+        }
+    });
+});

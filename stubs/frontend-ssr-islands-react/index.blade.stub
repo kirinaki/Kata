@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ module }}</title>
+    @vite([
+        'modules/{{ module }}/Resources/Assets/app.tsx',
+        'modules/{{ module }}/Resources/Assets/app.css',
+    ], 'build/modules/{{ nameKebab }}')
+</head>
+<body>
+    <h1 class="mb-4 text-2xl font-bold">Módulo {{ module }}</h1>
+
+    {{-- Isla montada en el cliente (sin contenido server-rendered). --}}
+    <x-island component="Counter" :props="['initial' => 5]" />
+
+    {{-- Isla hidratada sobre contenido server-rendered (fallback visible sin JS). --}}
+    <x-island component="Counter" :props="['initial' => 10]">
+        <p class="text-sm text-gray-500">Cargando contador…</p>
+    </x-island>
+</body>
+</html>

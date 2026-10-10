@@ -1,0 +1,18 @@
+{{--
+    Componente "isla": puente entre Blade y React.
+
+    Uso:
+      <x-island component="Counter" :props="['initial' => 5]" />
+      <x-island component="Counter" :props="['initial' => 10]">fallback</x-island>
+
+    - Sin slot: el cliente lo monta con createRoot.
+    - Con slot: el cliente lo hidrata sobre el HTML server-rendered con hydrateRoot.
+--}}
+<div
+    {{ $attributes->merge(['class' => 'island']) }}
+    data-island="{{ $component }}"
+    data-props='@json($props)'
+    @if ($slot->isNotEmpty()) data-mode="hydrate" @else data-mode="mount" @endif
+>
+    {{ $slot }}
+</div>
